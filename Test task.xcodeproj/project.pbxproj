@@ -13,6 +13,8 @@
 		A51698922603E38100C3FC26 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51698912603E38100C3FC26 /* Preview Assets.xcassets */; };
 		A516989D2603E38100C3FC26 /* Test_taskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516989C2603E38100C3FC26 /* Test_taskTests.swift */; };
 		A51698A82603E38100C3FC26 /* Test_taskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698A72603E38100C3FC26 /* Test_taskUITests.swift */; };
+		A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698B92603E44400C3FC26 /* LoginView.swift */; };
+		A51698C1260400AA00C3FC26 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		A51698A32603E38100C3FC26 /* Test taskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test taskUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51698A72603E38100C3FC26 /* Test_taskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_taskUITests.swift; sourceTree = "<group>"; };
 		A51698A92603E38100C3FC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A51698B92603E44400C3FC26 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 		A51698892603E37E00C3FC26 /* Test task */ = {
 			isa = PBXGroup;
 			children = (
+				A51698B82603E39E00C3FC26 /* Views */,
 				A516988A2603E37E00C3FC26 /* Test_taskApp.swift */,
 				A516988C2603E37E00C3FC26 /* ContentView.swift */,
 				A516988E2603E38100C3FC26 /* Assets.xcassets */,
@@ -128,6 +133,15 @@
 				A51698A92603E38100C3FC26 /* Info.plist */,
 			);
 			path = "Test taskUITests";
+			sourceTree = "<group>";
+		};
+		A51698B82603E39E00C3FC26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A51698B92603E44400C3FC26 /* LoginView.swift */,
+				A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */,
 				A516988D2603E37E00C3FC26 /* ContentView.swift in Sources */,
+				A51698C1260400AA00C3FC26 /* CustomButtonStyle.swift in Sources */,
 				A516988B2603E37E00C3FC26 /* Test_taskApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
