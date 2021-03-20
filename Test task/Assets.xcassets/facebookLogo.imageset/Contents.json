@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "facebookLogo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "512px-Facebook_F_icon.svg.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
