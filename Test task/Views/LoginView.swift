@@ -19,82 +19,83 @@ struct LoginView: View {
     
     
     var body: some View {
-        VStack{
-            Spacer(minLength: 90)
-            
-            Image(colorScheme == .dark ? "logoForDarkTheme" : "logoForLightTheme")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-//                .frame(height: 30, width: 70)
-                .frame(width: 150, height: 60)
+        ScrollView{
+            VStack{
+                Spacer()
+                Image(colorScheme == .dark ? "logoForDarkTheme" : "logoForLightTheme")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150, height: 60)
+                    .padding()
+                
+                Spacer()
+                Group{
+                    TextField("Email", text: $email)
+                        .keyboardType(.emailAddress)
+                        .disableAutocorrection(true)
+                    
+                    SecureField("Password", text: $password)
+                }
                 .padding()
-            
-            Spacer()
-            Group{
-                TextField("Email", text: $email)
-                    .keyboardType(.emailAddress)
-                    .disableAutocorrection(true)
-
-                SecureField("Password", text: $password)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundColor(.gray)
+                        .opacity(0.1)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
+                )
+                .padding(.vertical, 4)
+                
+                HStack{
+                    Spacer()
+                    Button("Forgot password?") { showAlertForgotPassword.toggle() }
+                }.padding(.bottom, 30)
+                
+                
+                Button(action: loginAction) {
+                    if isLoading{
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .setCustomStyleButton(disabledStyle: true)
+                            .padding(.bottom, 4)
+                    } else {
+                        Text("Log in")
+                            .setCustomStyleButton(disabledStyle: !isOnLiginButton)
+                    }
+                }.disabled(!isOnLiginButton)
+                
+                Button(action: {print("press facebookLogo")}) {
+                    HStack{
+                        Image("facebookLogo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.blue)
+                            .frame(width: 16, height: 16)
+                        Text("Log in with Facebook")
+                            .bold()
+                    }
+                }.padding(.top, 20)
+                
+                LabelledDivider()
+                    .padding(.vertical, 20)
+                
+                HStack{
+                    Text("Don't have an account?")
+                    NavigationLink("Sign Up.", destination: RegisterView())
+                }
+                
+                Spacer()
             }
             .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(.gray)
-                    .opacity(0.1)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
-            )
-            .padding(.vertical, 4)
-
-            HStack{
-                Spacer()
-                Button("Forgot password?") { showAlertForgotPassword.toggle() }
-            }.padding(.bottom, 30)
-
-
-            Button(action: loginAction) {
-                if isLoading{
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .setCustomStyleButton(disabledStyle: true)
-                        .padding(.bottom, 4)
-                } else {
-                    Text("Log in")
-                        .setCustomStyleButton(disabledStyle: !isOnLiginButton)
-                }
-            }.disabled(!isOnLiginButton)
-
-            Button(action: {print("press facebookLogo")}) {
-                HStack{
-                    Image("facebookLogo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.blue)
-                        .frame(width: 16, height: 16)
-                    Text("Log in with Facebook")
-                        .bold()
-                }
-            }.padding(.top, 20)
-
-            LabelledDivider()
-                .padding(.vertical, 20)
-
-            HStack{
-                Text("Don't have an account?")
-                NavigationLink("Sign Up.", destination: RegisterView())
-            }
-            
-            Spacer()
+            .navigationTitle("")
+            .navigationBarHidden(true)
+            .alert(isPresented: $showAlert) { alert }
+            .alert(isPresented: $showAlertForgotPassword) { alertForgotPassword }
         }
-        .padding()
-        .navigationTitle("")
-        .navigationBarHidden(true)
-        .alert(isPresented: $showAlert) { alert }
-        .alert(isPresented: $showAlertForgotPassword) { alertForgotPassword }
     }
+    
 }
 
 
@@ -169,7 +170,9 @@ struct LabelledDivider: View {
     var body: some View {
         HStack {
             line
-            Text("OR").foregroundColor(.gray)
+            Text("OR")
+                .foregroundColor(.gray)
+                .bold()
             line
         }
     }

@@ -20,11 +20,12 @@ import SwiftUI
         var body: some View {
             
             VStack{
-                
+//                Spacer()
                 Image(colorScheme == .dark ? "logoForDarkTheme" : "logoForLightTheme")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 60)
+//                    .frame(height: 60)
+                    .frame(width: 150, height: 60)
                 
                 Group{
                     TextField("Email", text: $email)
@@ -53,11 +54,11 @@ import SwiftUI
                         
                     } else {
                         Text("Register")
-                            .setCustomStyleButton(disabledStyle: !isOnLiginButton)
-                            .disabled(!isOnLiginButton)
-                        
+                            .setCustomStyleButton(disabledStyle: !isOnRegisterButton)
                     }
-                }.padding(.top, 30)
+                }
+                .disabled(!isOnRegisterButton)
+                .padding(.top, 30)
                 
                 Spacer()
                 
@@ -66,12 +67,6 @@ import SwiftUI
             .alert(isPresented: $showAlert) { alert }
         }
 }
-
-    
-    
-    
-
-
 
 extension RegisterView {
     
@@ -83,7 +78,7 @@ extension RegisterView {
         )
     }
     
-    private var isOnLiginButton: Bool {
+    private var isOnRegisterButton: Bool {
         email != "" && password != ""
     }
     
