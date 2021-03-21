@@ -13,22 +13,28 @@ struct LoginView: View {
     @State private var password = ""
     @State private var openNextView = false
     @State private var showAlert = false
+    @State private var showAlertForgotPassword = false
     @State private var alertMessage = ""
     @State private var isLoading = false
     
     
     var body: some View {
-        
         VStack{
+            Spacer(minLength: 90)
             
             Image(colorScheme == .dark ? "logoForDarkTheme" : "logoForLightTheme")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-//                .frame(width: UIScreen.main.bounds.size.width * 0.5)
-                .frame(height: 60)
+//                .frame(height: 30, width: 70)
+                .frame(width: 150, height: 60)
+                .padding()
             
+            Spacer()
             Group{
                 TextField("Email", text: $email)
+                    .keyboardType(.emailAddress)
+                    .disableAutocorrection(true)
+
                 SecureField("Password", text: $password)
             }
             .padding()
@@ -42,32 +48,23 @@ struct LoginView: View {
                     .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
             )
             .padding(.vertical, 4)
-            //            .frame(height: 90)
-            
+
             HStack{
                 Spacer()
-                Button("Forgot password?") {}
+                Button("Forgot password?") { showAlertForgotPassword.toggle() }
             }.padding(.bottom, 30)
-            
-//            Button("Log in", action: loginAction)
-//                .buttonStyle(CustomButtonStyle())
-//                .disabled(!isOnLiginButton)
-            
+
+
             Button(action: loginAction) {
                 if isLoading{
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
-//                        .font(.body)
                         .setCustomStyleButton(disabledStyle: true)
                         .padding(.bottom, 4)
                 } else {
                     Text("Log in")
                         .setCustomStyleButton(disabledStyle: !isOnLiginButton)
                 }
-            
-                
-                
-                
             }.disabled(!isOnLiginButton)
 
             Button(action: {print("press facebookLogo")}) {
@@ -80,24 +77,23 @@ struct LoginView: View {
                     Text("Log in with Facebook")
                         .bold()
                 }
-            }
-            
+            }.padding(.top, 20)
+
             LabelledDivider()
-            
+                .padding(.vertical, 20)
+
             HStack{
                 Text("Don't have an account?")
-                
                 NavigationLink("Sign Up.", destination: RegisterView())
-                
             }
             
-            
             Spacer()
-            
         }
         .padding()
         .navigationTitle("")
+        .navigationBarHidden(true)
         .alert(isPresented: $showAlert) { alert }
+        .alert(isPresented: $showAlertForgotPassword) { alertForgotPassword }
     }
 }
 
@@ -111,15 +107,24 @@ extension LoginView {
         )
     }
     
+    private var alertForgotPassword: Alert {
+        Alert(
+            title: Text("Login"),message: Text("""
+                                email: eve.holt@reqres.in
+                                password: cityslicka"
+                                """)
+        )
+    }
     
+
     private var isOnLiginButton: Bool {
         email != "" && password != ""
     }
     
     private func loginAction() {
         isLoading.toggle()
-        NetworkManager.shared.login(username: email, password: password) { (successful, response) in
-            isLoading.toggle()
+        NetworkManager.shared.login(username: email, password: password) { successful, response in
+            isLoading = false
             if successful {
                 openNextView.toggle()
             } else {
@@ -127,14 +132,36 @@ extension LoginView {
                 showAlert.toggle()
                 password = ""
             }
-            
         }
     }
-    
-    
 }
 
 
+/*
+struct ForgotPassword: View {
+    @State private var showingAlert = false
+    
+    var body: some View {
+        
+        HStack{
+            Spacer()
+            
+            Button("Forgot password?") {
+                showingAlert.toggle()
+                print(showingAlert)
+            }
+            .alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text("Login"),message: Text("""
+                                    email: eve.holt@reqres.in
+                                    password: cityslicka"
+                                    """)
+                )
+            }
+        }
+    }
+}
+*/
 
 
 

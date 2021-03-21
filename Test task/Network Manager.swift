@@ -19,7 +19,7 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    
+    /*
     func register(username: String, password: String) {
         guard let url = URL(string: URLS.register.rawValue) else { return }
         
@@ -58,9 +58,10 @@ class NetworkManager {
         }.resume()
         
     }
+    */
     
-    func login(username: String, password: String, completion: @escaping (_ successful: Bool, _ response: Response) -> () ) {
-        guard let url = URL(string: URLS.login.rawValue) else { return }
+    func register(username: String, password: String, completion: @escaping (_ successful: Bool, _ response: Response) -> () ) {
+        guard let url = URL(string: URLS.register.rawValue) else { return }
         
         let body = [ "email" : username, "password" : password ]
         
@@ -76,31 +77,63 @@ class NetworkManager {
                 print("URLSession error!!!! \(error)")
                 return
             }
-            
             guard let respons = respons as? HTTPURLResponse else { return }
-            
-            
             guard let data = data else { return }
-            
-            print("URLSession respons\n\(respons)")
+//
+//            print("URLSession respons\n\(respons)")
             
             do {
-               let successfulLogin = respons.statusCode == 200
                 let decode = JSONDecoder()
                 let serverResponse = try decode.decode(Response.self, from: data)
+                let successfulLogin = respons.statusCode == 200
+                    && serverResponse.token != nil
+                
                 DispatchQueue.main.async {
                     completion(successfulLogin, serverResponse)
                 }
-//                print("token!!!\(token)")
+                
             } catch let error {
                 print("JSONSerialization error\n\(error)")
             }
-            
-            
-            
-            
         }.resume()
+    }
+    
+    func login(username: String, password: String, completion: @escaping (_ successful: Bool, _ response: Response) -> () ) {
+        guard let url = URL(string: URLS.login.rawValue) else { return }
         
+        let body = [ "email" : username, "password" : password ]
+        
+        guard let loginData = try? JSONSerialization.data(withJSONObject: body, options: []) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = loginData
+        
+        URLSession.shared.dataTask(with: request) { (data, respons, error) in
+            if let error = error {
+                print("URLSession error!!!! \(error)")
+                return
+            }
+            guard let respons = respons as? HTTPURLResponse else { return }
+            guard let data = data else { return }
+//            
+//            print("URLSession respons\n\(respons)")
+            
+            do {
+                let decode = JSONDecoder()
+                let serverResponse = try decode.decode(Response.self, from: data)
+                let successfulLogin = respons.statusCode == 200
+                    && serverResponse.token != nil
+                
+                DispatchQueue.main.async {
+                    completion(successfulLogin, serverResponse)
+                }
+                
+            } catch let error {
+                print("JSONSerialization error\n\(error)")
+            }
+        }.resume()
     }
     
 }
