@@ -16,7 +16,6 @@ struct LoginView: View {
     @State private var alertMessage = ""
     @State private var isLoading = false
     
-    
     var body: some View {
         ScrollView{
             VStack{
@@ -27,8 +26,12 @@ struct LoginView: View {
                     .frame(width: 150, height: 60)
                     .padding()
                 
-                Spacer()
-                
+                NavigationLink(
+                    destination: UsersView(),
+                    isActive: $openUsersView) {
+                    EmptyView()
+                }
+    
                 LiginTextField(email: $email, password: $password)
 
                 ForgotPassword()
@@ -47,24 +50,24 @@ struct LoginView: View {
                 }
                 .disabled(!isOnLiginButton)
                 .alert(isPresented: $showAlert) { alert }
-                
-                FacebookButton()
-                    .padding(.top, 20)
-                
-                LabelledDivider()
-                    .padding(.vertical, 20)
-                
-                HStack{
-                    Text("Don't have an account?")
-                    NavigationLink("Sign Up.", destination: RegisterView())
+                VStack{
+                    FacebookButton()
+                        .padding(.top, 20)
+                    
+                    LabelledDivider()
+                        .padding(.vertical, 20)
+                    
+                    HStack{
+                        Text("Don't have an account?")
+                        NavigationLink("Sign Up.", destination: RegisterView())
+                    }
                 }
-                
+
                 Spacer()
             }
             .padding()
             .navigationTitle("")
             .navigationBarHidden(true)
-       
         }
     }
     
@@ -87,11 +90,12 @@ extension LoginView {
     private func loginAction() {
         isLoading.toggle()
         NetworkManager.shared.login(username: email, password: password) { successful, response in
-            isLoading = false
+            
             
             if successful {
                 openUsersView.toggle()
             } else {
+                isLoading = false
                 alertMessage = response.error ?? ""
                 showAlert = true
                 password = ""
@@ -143,25 +147,6 @@ struct LabelledDivider: View {
 }
 
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-            .preferredColorScheme(.light)
-    }
-}
-
-struct LabelledDivider_Previews: PreviewProvider {
-    static var previews: some View {
-        LabelledDivider()
-    }
-}
-
-struct ForgotPassword_Previews: PreviewProvider {
-    static var previews: some View {
-        ForgotPassword()
-    }
-}
-
 struct LiginTextField: View {
     @Binding var email: String
     @Binding var password: String
@@ -200,5 +185,26 @@ struct FacebookButton: View {
                     .bold()
             }
         }
+    }
+}
+
+
+
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+            .preferredColorScheme(.light)
+    }
+}
+
+struct LabelledDivider_Previews: PreviewProvider {
+    static var previews: some View {
+        LabelledDivider()
+    }
+}
+
+struct ForgotPassword_Previews: PreviewProvider {
+    static var previews: some View {
+        ForgotPassword()
     }
 }

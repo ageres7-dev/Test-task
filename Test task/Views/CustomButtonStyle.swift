@@ -15,7 +15,6 @@ struct CustomButtonStyle: ButtonStyle {
     struct MyButton: View {
         let configuration: ButtonStyle.Configuration
         @Environment(\.isEnabled) private var isEnabled: Bool
-//        @Environment(\.isPressed) private var isEnabled: Bool
         var body: some View {
             configuration.label
                 .frame(maxWidth: .infinity, minHeight: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

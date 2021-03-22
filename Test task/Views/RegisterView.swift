@@ -60,6 +60,13 @@ import SwiftUI
                 
                 Spacer()
                 
+                NavigationLink(
+                    destination: UsersView(),
+                    isActive: $openUsersView) {
+                    EmptyView()
+
+                }
+                
             }
             .padding()
             .alert(isPresented: $showAlert) { alert }

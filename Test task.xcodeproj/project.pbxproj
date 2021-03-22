@@ -15,7 +15,12 @@
 		A51698A82603E38100C3FC26 /* Test_taskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698A72603E38100C3FC26 /* Test_taskUITests.swift */; };
 		A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698B92603E44400C3FC26 /* LoginView.swift */; };
 		A51698C1260400AA00C3FC26 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */; };
-		A57B7FC72607E30B0012D2A1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FC62607E30B0012D2A1 /* Users.swift */; };
+		A57B7FC72607E30B0012D2A1 /* ListUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FC62607E30B0012D2A1 /* ListUsers.swift */; };
+		A57B7FCC260868F20012D2A1 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FCB260868F20012D2A1 /* UsersView.swift */; };
+		A57B7FD1260869170012D2A1 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FD0260869170012D2A1 /* Response.swift */; };
+		A57B7FDB26089BAC0012D2A1 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FDA26089BAC0012D2A1 /* CachedImage.swift */; };
+		A57B7FE62608AF1D0012D2A1 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FE52608AF1D0012D2A1 /* UsersViewModel.swift */; };
+		A57B7FEF2608C09E0012D2A1 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FEE2608C09E0012D2A1 /* RemoteImage.swift */; };
 		A5BCEBE32606638F00BD36B0 /* Network Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBE22606638F00BD36B0 /* Network Manager.swift */; };
 		A5BCEBEB26066F1F00BD36B0 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */; };
 		A5BCEBF02606B4A400BD36B0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */; };
@@ -53,7 +58,12 @@
 		A51698A92603E38100C3FC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A51698B92603E44400C3FC26 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
-		A57B7FC62607E30B0012D2A1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		A57B7FC62607E30B0012D2A1 /* ListUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUsers.swift; sourceTree = "<group>"; };
+		A57B7FCB260868F20012D2A1 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		A57B7FD0260869170012D2A1 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		A57B7FDA26089BAC0012D2A1 /* CachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
+		A57B7FE52608AF1D0012D2A1 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		A57B7FEE2608C09E0012D2A1 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		A5BCEBE22606638F00BD36B0 /* Network Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Manager.swift"; sourceTree = "<group>"; };
 		A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -107,13 +117,12 @@
 		A51698892603E37E00C3FC26 /* Test task */ = {
 			isa = PBXGroup;
 			children = (
+				A57B7FD62608695D0012D2A1 /* SupportingFiles */,
+				A57B7FD5260869340012D2A1 /* Managers */,
 				A57B7FC52607E2F20012D2A1 /* Models */,
 				A51698B82603E39E00C3FC26 /* Views */,
 				A516988A2603E37E00C3FC26 /* Test_taskApp.swift */,
-				A516988E2603E38100C3FC26 /* Assets.xcassets */,
-				A51698932603E38100C3FC26 /* Info.plist */,
 				A51698902603E38100C3FC26 /* Preview Content */,
-				A5BCEBE22606638F00BD36B0 /* Network Manager.swift */,
 			);
 			path = "Test task";
 			sourceTree = "<group>";
@@ -147,11 +156,14 @@
 		A51698B82603E39E00C3FC26 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A57B7FEA2608B4790012D2A1 /* UsersView */,
 				A516988C2603E37E00C3FC26 /* ContentView.swift */,
 				A51698B92603E44400C3FC26 /* LoginView.swift */,
 				A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */,
 				A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */,
 				A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */,
+				A57B7FDA26089BAC0012D2A1 /* CachedImage.swift */,
+				A57B7FEE2608C09E0012D2A1 /* RemoteImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,9 +171,36 @@
 		A57B7FC52607E2F20012D2A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A57B7FC62607E30B0012D2A1 /* Users.swift */,
+				A57B7FC62607E30B0012D2A1 /* ListUsers.swift */,
+				A57B7FD0260869170012D2A1 /* Response.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A57B7FD5260869340012D2A1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A5BCEBE22606638F00BD36B0 /* Network Manager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A57B7FD62608695D0012D2A1 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A516988E2603E38100C3FC26 /* Assets.xcassets */,
+				A51698932603E38100C3FC26 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A57B7FEA2608B4790012D2A1 /* UsersView */ = {
+			isa = PBXGroup;
+			children = (
+				A57B7FCB260868F20012D2A1 /* UsersView.swift */,
+				A57B7FE52608AF1D0012D2A1 /* UsersViewModel.swift */,
+			);
+			path = UsersView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,11 +332,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A57B7FC72607E30B0012D2A1 /* Users.swift in Sources */,
+				A57B7FC72607E30B0012D2A1 /* ListUsers.swift in Sources */,
+				A57B7FE62608AF1D0012D2A1 /* UsersViewModel.swift in Sources */,
 				A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */,
 				A5BCEBE32606638F00BD36B0 /* Network Manager.swift in Sources */,
 				A516988D2603E37E00C3FC26 /* ContentView.swift in Sources */,
+				A57B7FDB26089BAC0012D2A1 /* CachedImage.swift in Sources */,
+				A57B7FEF2608C09E0012D2A1 /* RemoteImage.swift in Sources */,
+				A57B7FD1260869170012D2A1 /* Response.swift in Sources */,
 				A5BCEBEB26066F1F00BD36B0 /* RegisterView.swift in Sources */,
+				A57B7FCC260868F20012D2A1 /* UsersView.swift in Sources */,
 				A5BCEBF02606B4A400BD36B0 /* CustomButton.swift in Sources */,
 				A51698C1260400AA00C3FC26 /* CustomButtonStyle.swift in Sources */,
 				A516988B2603E37E00C3FC26 /* Test_taskApp.swift in Sources */,
@@ -461,7 +505,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Test task/Preview Content\"";
 				DEVELOPMENT_TEAM = RNER64Q73Y;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Test task/Info.plist";
+				INFOPLIST_FILE = "Test task/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -483,7 +527,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Test task/Preview Content\"";
 				DEVELOPMENT_TEAM = RNER64Q73Y;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Test task/Info.plist";
+				INFOPLIST_FILE = "Test task/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

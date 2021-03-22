@@ -13,9 +13,6 @@ enum URLS: String {
     case users = "https://reqres.in/api/users"
 }
 
-
-
-
 class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
@@ -60,6 +57,32 @@ class NetworkManager {
         
     }
     */
+    
+    func fetchUsers(from url: String, completion: @escaping (_ users: ListUsers)->()) {
+        guard let url = URL(string: url) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let decode = JSONDecoder()
+                decode.keyDecodingStrategy = .convertFromSnakeCase
+                let users = try decode.decode(ListUsers.self, from: data)
+                
+                DispatchQueue.main.async {
+                    completion(users)
+                }
+            } catch let error {
+                print("CurrentWeather Error serialization json", error.localizedDescription)
+            }
+        }.resume()
+
+    }
+    
     
     func register(username: String, password: String, completion: @escaping (_ successful: Bool, _ response: Response) -> () ) {
         guard let url = URL(string: URLS.register.rawValue) else { return }
@@ -140,8 +163,21 @@ class NetworkManager {
 }
 
 
-struct Response: Codable {
-    let id: Int?
-    let token: String?
-    let error: String?
+
+
+class ImageManager {
+    static var shared = ImageManager()
+    
+    private init() {}
+    
+    func fetchImage(from url: URL, completion: @escaping(Data, URLResponse) -> Void) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data, let response = response else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            guard url == response.url else { return }
+            completion(data, response)
+        }.resume()
+    }
 }
