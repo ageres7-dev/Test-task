@@ -15,6 +15,7 @@
 		A51698A82603E38100C3FC26 /* Test_taskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698A72603E38100C3FC26 /* Test_taskUITests.swift */; };
 		A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698B92603E44400C3FC26 /* LoginView.swift */; };
 		A51698C1260400AA00C3FC26 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */; };
+		A57B7FC72607E30B0012D2A1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B7FC62607E30B0012D2A1 /* Users.swift */; };
 		A5BCEBE32606638F00BD36B0 /* Network Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBE22606638F00BD36B0 /* Network Manager.swift */; };
 		A5BCEBEB26066F1F00BD36B0 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */; };
 		A5BCEBF02606B4A400BD36B0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */; };
@@ -52,6 +53,7 @@
 		A51698A92603E38100C3FC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A51698B92603E44400C3FC26 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
+		A57B7FC62607E30B0012D2A1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		A5BCEBE22606638F00BD36B0 /* Network Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Manager.swift"; sourceTree = "<group>"; };
 		A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		A51698892603E37E00C3FC26 /* Test task */ = {
 			isa = PBXGroup;
 			children = (
+				A57B7FC52607E2F20012D2A1 /* Models */,
 				A51698B82603E39E00C3FC26 /* Views */,
 				A516988A2603E37E00C3FC26 /* Test_taskApp.swift */,
 				A516988E2603E38100C3FC26 /* Assets.xcassets */,
@@ -151,6 +154,14 @@
 				A51698C0260400AA00C3FC26 /* CustomButtonStyle.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A57B7FC52607E2F20012D2A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A57B7FC62607E30B0012D2A1 /* Users.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A57B7FC72607E30B0012D2A1 /* Users.swift in Sources */,
 				A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */,
 				A5BCEBE32606638F00BD36B0 /* Network Manager.swift in Sources */,
 				A516988D2603E37E00C3FC26 /* ContentView.swift in Sources */,

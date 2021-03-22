@@ -11,9 +11,8 @@ struct LoginView: View {
     @Environment(\.colorScheme) private var colorScheme
     @State private var email = ""
     @State private var password = ""
-    @State private var openNextView = false
+    @State private var openUsersView = false
     @State private var showAlert = false
-    @State private var showAlertForgotPassword = false
     @State private var alertMessage = ""
     @State private var isLoading = false
     
@@ -29,30 +28,11 @@ struct LoginView: View {
                     .padding()
                 
                 Spacer()
-                Group{
-                    TextField("Email", text: $email)
-                        .keyboardType(.emailAddress)
-                        .disableAutocorrection(true)
-                    
-                    SecureField("Password", text: $password)
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundColor(.gray)
-                        .opacity(0.1)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
-                )
-                .padding(.vertical, 4)
                 
-                HStack{
-                    Spacer()
-                    Button("Forgot password?") { showAlertForgotPassword.toggle() }
-                }.padding(.bottom, 30)
-                
+                LiginTextField(email: $email, password: $password)
+
+                ForgotPassword()
+                    .padding(.bottom, 30)
                 
                 Button(action: loginAction) {
                     if isLoading{
@@ -64,19 +44,12 @@ struct LoginView: View {
                         Text("Log in")
                             .setCustomStyleButton(disabledStyle: !isOnLiginButton)
                     }
-                }.disabled(!isOnLiginButton)
+                }
+                .disabled(!isOnLiginButton)
+                .alert(isPresented: $showAlert) { alert }
                 
-                Button(action: {print("press facebookLogo")}) {
-                    HStack{
-                        Image("facebookLogo")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.blue)
-                            .frame(width: 16, height: 16)
-                        Text("Log in with Facebook")
-                            .bold()
-                    }
-                }.padding(.top, 20)
+                FacebookButton()
+                    .padding(.top, 20)
                 
                 LabelledDivider()
                     .padding(.vertical, 20)
@@ -91,8 +64,7 @@ struct LoginView: View {
             .padding()
             .navigationTitle("")
             .navigationBarHidden(true)
-            .alert(isPresented: $showAlert) { alert }
-            .alert(isPresented: $showAlertForgotPassword) { alertForgotPassword }
+       
         }
     }
     
@@ -107,17 +79,7 @@ extension LoginView {
             message: Text(alertMessage)
         )
     }
-    
-    private var alertForgotPassword: Alert {
-        Alert(
-            title: Text("Login"),message: Text("""
-                                email: eve.holt@reqres.in
-                                password: cityslicka"
-                                """)
-        )
-    }
-    
-
+        
     private var isOnLiginButton: Bool {
         email != "" && password != ""
     }
@@ -126,11 +88,12 @@ extension LoginView {
         isLoading.toggle()
         NetworkManager.shared.login(username: email, password: password) { successful, response in
             isLoading = false
+            
             if successful {
-                openNextView.toggle()
+                openUsersView.toggle()
             } else {
                 alertMessage = response.error ?? ""
-                showAlert.toggle()
+                showAlert = true
                 password = ""
             }
         }
@@ -138,7 +101,6 @@ extension LoginView {
 }
 
 
-/*
 struct ForgotPassword: View {
     @State private var showingAlert = false
     
@@ -149,7 +111,6 @@ struct ForgotPassword: View {
             
             Button("Forgot password?") {
                 showingAlert.toggle()
-                print(showingAlert)
             }
             .alert(isPresented: $showingAlert) {
                 Alert(
@@ -162,8 +123,6 @@ struct ForgotPassword: View {
         }
     }
 }
-*/
-
 
 
 struct LabelledDivider: View {
@@ -184,10 +143,62 @@ struct LabelledDivider: View {
 }
 
 
-
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
             .preferredColorScheme(.light)
+    }
+}
+
+struct LabelledDivider_Previews: PreviewProvider {
+    static var previews: some View {
+        LabelledDivider()
+    }
+}
+
+struct ForgotPassword_Previews: PreviewProvider {
+    static var previews: some View {
+        ForgotPassword()
+    }
+}
+
+struct LiginTextField: View {
+    @Binding var email: String
+    @Binding var password: String
+    var body: some View {
+        Group{
+            TextField("Email", text: $email)
+                .keyboardType(.emailAddress)
+                .disableAutocorrection(true)
+            
+            SecureField("Password", text: $password)
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .foregroundColor(.gray)
+                .opacity(0.1)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
+        )
+        .padding(.vertical, 4)
+    }
+}
+
+struct FacebookButton: View {
+    var body: some View {
+        Button(action: {print("press facebookLogo")}) {
+            HStack{
+                Image("facebookLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.blue)
+                    .frame(width: 16, height: 16)
+                Text("Log in with Facebook")
+                    .bold()
+            }
+        }
     }
 }

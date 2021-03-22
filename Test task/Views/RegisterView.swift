@@ -20,11 +20,9 @@ import SwiftUI
         var body: some View {
             
             VStack{
-//                Spacer()
                 Image(colorScheme == .dark ? "logoForDarkTheme" : "logoForLightTheme")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-//                    .frame(height: 60)
                     .frame(width: 150, height: 60)
                 
                 Group{
@@ -70,7 +68,6 @@ import SwiftUI
 
 extension RegisterView {
     
-    
     private var alert: Alert {
         Alert(
             title: Text("Error"),
@@ -95,8 +92,6 @@ extension RegisterView {
             }
         }
     }
-    
-    
 }
 
 struct RegisterView_Previews: PreviewProvider {

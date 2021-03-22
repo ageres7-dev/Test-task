@@ -10,6 +10,7 @@ import Foundation
 enum URLS: String {
     case register = "https://reqres.in/api/register"
     case login = "https://reqres.in/api/login"
+    case users = "https://reqres.in/api/users"
 }
 
 
