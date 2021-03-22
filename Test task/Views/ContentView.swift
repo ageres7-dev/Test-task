@@ -17,9 +17,10 @@ struct ContentView: View {
             }
             .tabItem { Image(systemName: "pip.enter") }
             
-            UsersView()
-                .tabItem { Image(systemName: "person.3") }
-            
+            NavigationView{
+                UsersView()
+            }
+            .tabItem { Image(systemName: "person.3") }
         }
     }
 }
