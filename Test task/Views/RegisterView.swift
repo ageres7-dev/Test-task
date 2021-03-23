@@ -61,7 +61,7 @@ import SwiftUI
                 Spacer()
                 
                 NavigationLink(
-                    destination: UsersView(),
+                    destination: UsersTabView(),
                     isActive: $openUsersView) {
                     EmptyView()
 

@@ -24,6 +24,9 @@
 		A5BCEBE32606638F00BD36B0 /* Network Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBE22606638F00BD36B0 /* Network Manager.swift */; };
 		A5BCEBEB26066F1F00BD36B0 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */; };
 		A5BCEBF02606B4A400BD36B0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */; };
+		A5FCDC2626093D5E009C4C5D /* UsersViewInfiniteScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCDC2526093D5E009C4C5D /* UsersViewInfiniteScroll.swift */; };
+		A5FCDC2E26093D7E009C4C5D /* UsersViewInfiniteScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCDC2D26093D7E009C4C5D /* UsersViewInfiniteScrollModel.swift */; };
+		A5FCDC3326094D44009C4C5D /* UsersTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCDC3226094D44009C4C5D /* UsersTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		A5BCEBE22606638F00BD36B0 /* Network Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Manager.swift"; sourceTree = "<group>"; };
 		A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		A5FCDC2526093D5E009C4C5D /* UsersViewInfiniteScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewInfiniteScroll.swift; sourceTree = "<group>"; };
+		A5FCDC2D26093D7E009C4C5D /* UsersViewInfiniteScrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewInfiniteScrollModel.swift; sourceTree = "<group>"; };
+		A5FCDC3226094D44009C4C5D /* UsersTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +162,10 @@
 		A51698B82603E39E00C3FC26 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A5FCDC2426093CFB009C4C5D /* UsersViewInfiniteScroll */,
 				A57B7FEA2608B4790012D2A1 /* UsersView */,
 				A516988C2603E37E00C3FC26 /* ContentView.swift */,
+				A5FCDC3226094D44009C4C5D /* UsersTabView.swift */,
 				A51698B92603E44400C3FC26 /* LoginView.swift */,
 				A5BCEBEF2606B4A400BD36B0 /* CustomButton.swift */,
 				A5BCEBEA26066F1F00BD36B0 /* RegisterView.swift */,
@@ -201,6 +209,15 @@
 				A57B7FE52608AF1D0012D2A1 /* UsersViewModel.swift */,
 			);
 			path = UsersView;
+			sourceTree = "<group>";
+		};
+		A5FCDC2426093CFB009C4C5D /* UsersViewInfiniteScroll */ = {
+			isa = PBXGroup;
+			children = (
+				A5FCDC2526093D5E009C4C5D /* UsersViewInfiniteScroll.swift */,
+				A5FCDC2D26093D7E009C4C5D /* UsersViewInfiniteScrollModel.swift */,
+			);
+			path = UsersViewInfiniteScroll;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,15 +350,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A57B7FC72607E30B0012D2A1 /* ListUsers.swift in Sources */,
+				A5FCDC3326094D44009C4C5D /* UsersTabView.swift in Sources */,
 				A57B7FE62608AF1D0012D2A1 /* UsersViewModel.swift in Sources */,
 				A51698BA2603E44400C3FC26 /* LoginView.swift in Sources */,
 				A5BCEBE32606638F00BD36B0 /* Network Manager.swift in Sources */,
+				A5FCDC2626093D5E009C4C5D /* UsersViewInfiniteScroll.swift in Sources */,
 				A516988D2603E37E00C3FC26 /* ContentView.swift in Sources */,
 				A57B7FDB26089BAC0012D2A1 /* CachedImage.swift in Sources */,
 				A57B7FEF2608C09E0012D2A1 /* RemoteImage.swift in Sources */,
 				A57B7FD1260869170012D2A1 /* Response.swift in Sources */,
 				A5BCEBEB26066F1F00BD36B0 /* RegisterView.swift in Sources */,
 				A57B7FCC260868F20012D2A1 /* UsersView.swift in Sources */,
+				A5FCDC2E26093D7E009C4C5D /* UsersViewInfiniteScrollModel.swift in Sources */,
 				A5BCEBF02606B4A400BD36B0 /* CustomButton.swift in Sources */,
 				A51698C1260400AA00C3FC26 /* CustomButtonStyle.swift in Sources */,
 				A516988B2603E37E00C3FC26 /* Test_taskApp.swift in Sources */,

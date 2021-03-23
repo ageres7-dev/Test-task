@@ -27,7 +27,7 @@ struct LoginView: View {
                     .padding()
                 
                 NavigationLink(
-                    destination: UsersView(),
+                    destination: UsersTabView(),
                     isActive: $openUsersView) {
                     EmptyView()
                 }
@@ -94,6 +94,7 @@ extension LoginView {
             
             if successful {
                 openUsersView.toggle()
+                print("openUsersView ")
             } else {
                 isLoading = false
                 alertMessage = response.error ?? ""
