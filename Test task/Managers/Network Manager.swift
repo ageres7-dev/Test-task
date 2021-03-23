@@ -17,47 +17,6 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    /*
-    func register(username: String, password: String) {
-        guard let url = URL(string: URLS.register.rawValue) else { return }
-        
-        let body = [ "email" : username, "password" : password ]
-        
-        guard let registerData = try? JSONSerialization.data(withJSONObject: body, options: []) else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = registerData
-        
-        URLSession.shared.dataTask(with: request) { (data, respons, error) in
-            if let error = error {
-                print("URLSession error\n \(error)")
-                return
-            }
-            
-            guard let respons = respons, let data = data else { return }
-            
-            
-            print("data\n\(data)")
-            print("URLSession responsr\n\(respons)")
-            
-            do {
-                let token = try JSONSerialization.jsonObject(with: data, options: [])
-//                DispatchQueue.main.async {
-//                    // code
-//                }
-                print("token\n\(token)")
-            } catch let error {
-                print(error)
-            }
-            
-            
-        }.resume()
-        
-    }
-    */
-    
     func fetchUsers(from url: String, completion: @escaping (_ users: ListUsers)->()) {
         guard let url = URL(string: url) else { return }
         
@@ -101,11 +60,10 @@ class NetworkManager {
                 print("URLSession error!!!! \(error)")
                 return
             }
+            
             guard let respons = respons as? HTTPURLResponse else { return }
             guard let data = data else { return }
-//
-//            print("URLSession respons\n\(respons)")
-            
+
             do {
                 let decode = JSONDecoder()
                 let serverResponse = try decode.decode(Response.self, from: data)
@@ -141,8 +99,6 @@ class NetworkManager {
             }
             guard let respons = respons as? HTTPURLResponse else { return }
             guard let data = data else { return }
-//            
-//            print("URLSession respons\n\(respons)")
             
             do {
                 let decode = JSONDecoder()
@@ -162,22 +118,3 @@ class NetworkManager {
     
 }
 
-
-
-
-class ImageManager {
-    static var shared = ImageManager()
-    
-    private init() {}
-    
-    func fetchImage(from url: URL, completion: @escaping(Data, URLResponse) -> Void) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, let response = response else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            guard url == response.url else { return }
-            completion(data, response)
-        }.resume()
-    }
-}

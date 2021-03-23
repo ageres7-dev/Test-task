@@ -9,9 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.colorScheme) private var colorScheme
+    @Binding var showUsers: Bool
     @State private var email = ""
     @State private var password = ""
-    @State private var openUsersView = false
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var isLoading = false
@@ -25,13 +25,7 @@ struct LoginView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 150, height: 60)
                     .padding()
-                
-                NavigationLink(
-                    destination: UsersTabView(),
-                    isActive: $openUsersView) {
-                    EmptyView()
-                }
-    
+               
                 LiginTextField(email: $email, password: $password)
 
                 ForgotPassword()
@@ -59,7 +53,7 @@ struct LoginView: View {
                     
                     HStack{
                         Text("Don't have an account?")
-                        NavigationLink("Sign Up.", destination: RegisterView())
+                        NavigationLink("Sign Up.", destination: RegisterView(showUsers: $showUsers))
                     }
                 }
 
@@ -91,16 +85,17 @@ extension LoginView {
         isLoading.toggle()
         NetworkManager.shared.login(username: email, password: password) { successful, response in
             
-            
             if successful {
-                openUsersView.toggle()
-                print("openUsersView ")
+                withAnimation() {
+                    showUsers.toggle()
+                }
             } else {
                 isLoading = false
                 alertMessage = response.error ?? ""
                 showAlert = true
                 password = ""
             }
+            
         }
     }
 }
@@ -193,7 +188,7 @@ struct FacebookButton: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(showUsers: .constant(false))
             .preferredColorScheme(.light)
     }
 }

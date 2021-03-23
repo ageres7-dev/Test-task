@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showUsers = false
     var body: some View {
-        NavigationView{
-            LoginView()
+        
+        if showUsers {
+            UsersTabView()
+                .opacity(showUsers ? 1 : 0)
+        } else {
+            NavigationView{
+                LoginView(showUsers: $showUsers)
+            }
         }
     }
 }

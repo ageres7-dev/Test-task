@@ -22,7 +22,7 @@ struct UsersView: View {
             }
         }
         .navigationTitle("Users")
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform:{ viewModel.fetchUsers(url: URLS.users.rawValue) })
         
         .toolbar {

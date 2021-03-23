@@ -20,8 +20,6 @@ struct UsersTabView: View {
             }
             .tabItem { Label("Infinite Scroll", systemImage: "infinity.circle") }
         }
-//        .navigationBarHidden(true)
-        
     }
 }
 
