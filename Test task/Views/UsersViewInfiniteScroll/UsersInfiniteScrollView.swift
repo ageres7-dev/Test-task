@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct UsersViewInfiniteScroll: View {
-    @StateObject var viewModel = UsersViewInfiniteScrollModel()
+struct UsersInfiniteScrollView: View {
+    @StateObject var viewModel = UsersInfiniteScrollViewModel()
     @State private var nextIndex = 1
     
     var body: some View {
@@ -36,6 +36,7 @@ struct RowView: View {
     
     var body: some View {
         HStack{
+           
             RemoteImage(url: user.avatar ?? "")
                 .aspectRatio(contentMode: .fit)
                 .clipShape(Circle())
@@ -47,6 +48,6 @@ struct RowView: View {
 
 struct UsersViewInfiniteScroll_Previews: PreviewProvider {
     static var previews: some View {
-        UsersViewInfiniteScroll()
+        UsersInfiniteScrollView()
     }
 }

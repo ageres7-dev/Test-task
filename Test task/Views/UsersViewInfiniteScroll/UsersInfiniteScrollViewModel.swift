@@ -1,5 +1,5 @@
 //
-//  UsersViewInfiniteScrollModel.swift
+//  UsersInfiniteScrollViewModel.swift
 //  Test task
 //
 //  Created by Сергей on 23.03.2021.
@@ -7,15 +7,21 @@
 
 import Foundation
 
-class UsersViewInfiniteScrollModel: ObservableObject {
+class UsersInfiniteScrollViewModel: ObservableObject {
     @Published var users: [User] = []
-    private var listUsers: ListUsers?
+    private(set) var listUsers: ListUsers?
+    
+    private let networkManager: NetworkManagerProtocol
     
     private var loadNewPage: Bool {
         guard let totalPages = listUsers?.totalPages,
               let page = listUsers?.page else { return true }
 
         return page != totalPages
+    }
+    
+    init(networkManager: NetworkManagerProtocol = NetworkManager.shared) {
+        self.networkManager = networkManager
     }
     
     func actionLoadPage() {
@@ -29,7 +35,8 @@ class UsersViewInfiniteScrollModel: ObservableObject {
     }
     
     private func fetchUsers(url: String) {
-        NetworkManager.shared.fetchUsers(from: url) { listUsers in
+        //        NetworkManager.shared.fetchUsers(from: url) { listUsers in
+        networkManager.fetchUsers(from: url) { listUsers in
             guard let users = listUsers.data else { return }
             
             self.listUsers = listUsers
@@ -39,7 +46,7 @@ class UsersViewInfiniteScrollModel: ObservableObject {
         }
     }
     
-    private func usersURL(page number: String) -> String {
+    func usersURL(page number: String) -> String {
         "\(URLS.users.rawValue)?page=\(number)"
     }
 }

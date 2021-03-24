@@ -13,13 +13,17 @@ enum URLS: String {
     case users = "https://reqres.in/api/users"
 }
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetchUsers(from url: String, completion: @escaping (_ users: ListUsers)->())
+}
+
+class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     private init() {}
     
     func fetchUsers(from url: String, completion: @escaping (_ users: ListUsers)->()) {
         guard let url = URL(string: url) else { return }
-        
+//        Result
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 print(error)

@@ -16,7 +16,7 @@ struct UsersTabView: View {
             }
             .tabItem { Label("Users", systemImage: "person.3") }
             NavigationView{
-                UsersViewInfiniteScroll()
+                UsersInfiniteScrollView()
             }
             .tabItem { Label("Infinite Scroll", systemImage: "infinity.circle") }
         }
