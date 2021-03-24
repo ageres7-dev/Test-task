@@ -23,7 +23,7 @@ struct UsersViewInfiniteScroll: View {
                 }
         }
         .navigationTitle("Users")
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
         .onAppear(perform:{ viewModel.actionLoadPage() })
     
     }
