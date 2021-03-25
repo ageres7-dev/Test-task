@@ -17,13 +17,13 @@ struct UsersInfiniteScrollView: View {
             let user = viewModel.users[userIndex]
             RowView(user: user)
                 .onAppear {
-                    if userIndex == viewModel.users.count - 2 {
-                        viewModel.actionLoadPage()
-                    }
+                    viewModel.actionWhenRowAppears(with: userIndex)
+//                    if userIndex == viewModel.users.count - 2 {
+//                        viewModel.actionLoadPage()
+//                    }
                 }
         }
         .navigationTitle("Users")
-//        .navigationBarBackButtonHidden(true)
         .onAppear(perform:{ viewModel.actionLoadPage() })
     
     }

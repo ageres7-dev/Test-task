@@ -57,13 +57,33 @@ class UsersInfiniteScrollViewTests: XCTestCase {
     
     func testStopAddingItemsAfterReachingTheLastPage() {
         sut.actionLoadPage()
-        sut.actionLoadPage()
-        sut.actionLoadPage()
-        let amountItemsBeforeLoading = sut.users.count
-        sut.actionLoadPage()
-        let amountItemsAfterLoading = sut.users.count
         
-        XCTAssert(amountItemsBeforeLoading == amountItemsAfterLoading)
+        if let totalPage = sut.listUsers?.totalPages {
+            for _ in 1...(totalPage - 1) {
+                sut.actionLoadPage()
+            }
+        }
+        
+        let amountItemsBeforeLoading = sut.users.count
+
+        sut.actionLoadPage()
+        
+        let amountItemsAfterLoading = sut.users.count
+       
+        XCTAssert(amountItemsBeforeLoading == amountItemsAfterLoading &&
+                    !sut.users.isEmpty)
     }
+    
+    func testLoadPageWhenPenultimateRowAppears() {
+        sut.actionLoadPage()
+        let firsPage = sut.listUsers?.page
+        let penultimateLineIndex = sut.users.count - 2
+        sut.actionWhenRowAppears(with: penultimateLineIndex)
+        
+        let secondPage = sut.listUsers?.page
+        XCTAssert(firsPage != secondPage && firsPage != nil && secondPage != nil)
+        
+    }
+    
     
 }

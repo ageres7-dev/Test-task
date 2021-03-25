@@ -34,8 +34,17 @@ class UsersInfiniteScrollViewModel: ObservableObject {
         print("load New Page")
     }
     
+    func actionWhenRowAppears(with index: Int) {
+        guard isLastRowWith(index: index) else { return }
+        actionLoadPage()
+    }
+    
+    
+    private func isLastRowWith(index: Int) -> Bool {
+        index == users.count - 2
+    }
+    
     private func fetchUsers(url: String) {
-        //        NetworkManager.shared.fetchUsers(from: url) { listUsers in
         networkManager.fetchUsers(from: url) { listUsers in
             guard let users = listUsers.data else { return }
             
