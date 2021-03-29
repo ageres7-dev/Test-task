@@ -13,7 +13,7 @@ struct UsersView: View {
     var body: some View {
         
         List(viewModel.users, id: \.self) { user in
-            HStack{
+            HStack {
                 RemoteImage(url: user.avatar ?? "")
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Circle())

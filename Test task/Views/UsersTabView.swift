@@ -10,15 +10,23 @@ import SwiftUI
 struct UsersTabView: View {
     var body: some View {
         
-        TabView{
-            NavigationView{
+        TabView {
+            NavigationView {
                 UsersView()
             }
             .tabItem { Label("Users", systemImage: "person.3") }
-            NavigationView{
+            NavigationView {
                 UsersInfiniteScrollView()
             }
             .tabItem { Label("Infinite Scroll", systemImage: "infinity.circle") }
+            
+            
+            UserViewV2()
+                
+            .tabItem {
+                Label("User", systemImage: "person.fill")
+                
+            }
         }
     }
 }

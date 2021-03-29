@@ -151,6 +151,7 @@ struct LiginTextField: View {
         Group{
             TextField("Email", text: $email)
                 .keyboardType(.emailAddress)
+                .autocapitalization(.none)
                 .disableAutocorrection(true)
             
             SecureField("Password", text: $password)
