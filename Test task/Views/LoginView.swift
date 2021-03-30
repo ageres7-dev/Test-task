@@ -48,9 +48,9 @@ struct LoginView: View {
                     FacebookButton()
                         .padding(.top, 20)
                     
-                    Button("hack enter", action: {showUsers.toggle()})
-//                    LabelledDivider()
-//                        .padding(.vertical, 20)
+//                    Button("hack enter", action: {showUsers.toggle()})
+                    LabelledDivider()
+                        .padding(.vertical, 20)
                     
                     HStack{
                         Text("Don't have an account?")
@@ -65,7 +65,6 @@ struct LoginView: View {
             .navigationBarHidden(true)
         }
     }
-    
 }
 
 
@@ -96,7 +95,7 @@ extension LoginView {
                 showAlert = true
                 password = ""
             }
-            
+
         }
     }
 }
